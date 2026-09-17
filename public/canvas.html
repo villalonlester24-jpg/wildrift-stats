@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Champion Builds &amp; Counters &mdash; Top 10 Layout Formats</title>
+<meta name="description" content="Explore 10 custom structural layout formats for Champion Builds, Items, Runes, and Counters with uniform typography and Hextech Cyber Rift palette." />
+<link rel="icon" type="image/jpeg" href="iconchrome.jpg" />
+<link rel="apple-touch-icon" href="iconchrome.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ==========================================================================
+   UNIFORM HEXTECH PALETTE & CALIBRATED TYPOGRAPHY
+   ========================================================================== */
+:root {
+  /* Color Palette As-Is */
+  --bg: #07090e;
+  --bg-deep: #040508;
+  --surface: #0e111a;
+  --surface-2: #141926;
+  --surface-hover: #1b2234;
+  --line: #1c2438;
+  --line-strong: #2a3754;
+  --line-glow: rgba(10, 200, 185, 0.45);
+  
+  --text-primary: #e8ecf8;
+  --text-title: #ffffff;
+  --text-secondary: #a6b5d9;
+  --text-muted: #6f7c9e;
+
+  --accent: #0ac8b9;
+  --accent-soft: rgba(10, 200, 185, 0.12);
+  --accent-glow: 0 0 20px rgba(10, 200, 185, 0.28);
+  --accent-grad: linear-gradient(135deg, #0ac8b9 0%, #008f84 100%);
+  --accent-ink: #041014;
+
+  --rate-win: #0ac8b9;
+  --rate-pick: #50a6ff;
+  --rate-ban: #ff4769;
+  --gold: #c8aa6e;
+
+  /* Uniform Apple HIG / Calibrated Typography Scale */
+  --font-display: "Space Grotesk", -apple-system, sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --fs-title-1: 1.375rem; /* 22px */
+  --fs-title-2: 1.125rem; /* 18px */
+  --fs-headline: 0.9375rem; /* 15px */
+  --fs-body: 0.875rem; /* 14px */
+  --fs-callout: 0.8125rem; /* 13px */
+  --fs-footnote: 0.75rem; /* 12px */
+  --fs-caption: 0.6875rem; /* 11px */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(55rem 30rem at 14% -5%, rgba(10, 200, 185, 0.1), transparent 70%),
+    radial-gradient(50rem 26rem at 86% -2%, rgba(80, 166, 255, 0.08), transparent 70%),
+    var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+button { font: inherit; cursor: pointer; border: none; background: transparent; }
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.page-head {
+  width: min(1380px, 100%);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-callout);
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 14px;
+  font-weight: 700;
+  transition: opacity 0.15s ease;
+}
+.back-link:hover { opacity: 0.8; }
+
+.page-head h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-title);
+}
+
+.page-head p {
+  margin-top: 10px;
+  max-width: 82ch;
+  color: var(--text-secondary);
+  font-size: var(--fs-body);
+}
+
+/* Canvas Controls Bar */
+.canvas-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.controls-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.controls-badge {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(10, 200, 185, 0.3);
+}
+
+.hero-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-toggle span {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-size: var(--fs-callout);
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.hero-btn img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+}
+.hero-btn.active {
+  border-color: var(--accent);
+  color: #ffffff;
+  background: var(--accent-soft);
+  box-shadow: 0 0 14px rgba(10, 200, 185, 0.25);
+}
+
+/* Gallery Container */
+.gallery {
+  width: min(1380px, 100%);
+  margin: 0 auto;
+  padding: 24px 24px calc(120px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.frame {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.frame.is-selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 24px 60px -20px rgba(10, 200, 185, 0.35);
+}
+
+.frame__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 22px;
+}
+
+.frame__idx {
+  font-family: var(--font-mono);
+  font-size: var(--fs-headline);
+  font-weight: 700;
+  color: var(--accent);
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.frame__meta { flex: 1; min-width: 260px; }
+.frame__meta h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-title-1);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-title);
+}
+.frame__meta p { font-size: var(--fs-footnote); color: var(--text-secondary); margin-top: 3px; }
+
+.frame__actions { display: flex; gap: 10px; }
+
+.btn {
+  font-size: var(--fs-callout);
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 18px;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+.btn:active { transform: translateY(0) scale(0.97); }
+
+.btn--primary {
+  background: var(--accent-grad);
+  color: var(--accent-ink);
+  border-color: transparent;
+  box-shadow: 0 0 16px rgba(10, 200, 185, 0.3);
+}
+.btn--primary:hover { opacity: 0.92; }
+
+/* ==========================================================================
+   SHARED HEXTECH BUILD COMPONENTS (UNIFORM FONTS & AS-IS COLORS)
+   ========================================================================== */
+.hero-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 16px rgba(10, 200, 185, 0.35);
+  object-fit: cover;
+  background: var(--bg-deep);
+}
+
+.hero-names h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-title-1);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-title);
+  line-height: 1.15;
+}
+
+.hero-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.role-badge {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(10, 200, 185, 0.3);
+}
+
+.rank-badge {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.hero-telemetry-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tele-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.tele-pill .val { font-family: var(--font-mono); font-size: var(--fs-headline); font-weight: 700; }
+.tele-pill .lbl { font-size: var(--fs-caption); text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+.tele-pill.win .val { color: var(--rate-win); }
+.tele-pill.pick .val { color: var(--rate-pick); }
+.tele-pill.ban .val { color: var(--rate-ban); }
+
+/* Common Item Slot */
+.item-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 56px;
+  text-align: center;
+}
+.item-slot img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line-strong);
+  background: var(--bg-deep);
+  object-fit: cover;
+  transition: all 0.15s ease;
+}
+.item-slot:hover img {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(10, 200, 185, 0.4);
+  transform: translateY(-2px);
+}
+.item-slot.core img { border-color: rgba(10, 200, 185, 0.6); }
+.item-slot .name {
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  color: var(--text-secondary);
+  max-width: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item-slot .cost {
+  position: absolute;
+  bottom: 18px;
+  right: 1px;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  background: rgba(4, 5, 8, 0.85);
+  padding: 1px 3px;
+  border-radius: 3px;
+  color: var(--gold);
+}
+
+/* Common Section Title */
+.sec-title {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sec-title strong { color: var(--accent); font-family: var(--font-mono); }
+
+/* Threat Matchup Card */
+.threat-box {
+  padding: 9px 12px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: var(--fs-footnote);
+  line-height: 1.4;
+}
+.threat-box.counter { border-left: 3px solid var(--rate-ban); }
+.threat-box.favored { border-left: 3px solid var(--rate-win); }
+.threat-box strong { color: var(--text-title); font-weight: 700; }
+
+/* Fullscreen Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(4, 5, 8, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal.is-open { display: flex; }
+.modal-wrap {
+  width: min(1060px, 96vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  padding: 24px;
+  box-shadow: 0 0 50px rgba(10, 200, 185, 0.25);
+}
+.modal-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.modal-close:hover { background: var(--accent); color: #000; }
+</style>
+</head>
+<body>
+
+  <header class="page-head">
+    <div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap;">
+      <a class="back-link" href="/">&larr; Back to Live Wild Rift Stats</a>
+      <a class="back-link" href="/canvas-footer.html" style="color: var(--rate-pick);">&rarr; Explore 5 Footer Design Canvases</a>
+    </div>
+    <h1>Champion Builds &amp; Counters &mdash; Top 10 Layout Formats</h1>
+    <p>Compare 10 distinct architectural layout formats for the Champion Builds, Items, Runes, and Counters UI. All formats strictly use the live <strong>Hextech Cyber Rift color palette</strong> and a calibrated, uniform typography scale. Toggle sample champion to preview live data.</p>
+
+    <div class="canvas-controls">
+      <div class="controls-info">
+        <span class="controls-badge">Live Palette Preserved</span>
+        <span style="font-size: var(--fs-footnote); color: var(--text-muted);">Uniform Font Hierarchy Active</span>
+      </div>
+
+      <div class="hero-toggle">
+        <span>Preview Champion:</span>
+        <button type="button" class="hero-btn active" id="btn-amumu">
+          <img src="https://www.wildriftguides.com/assets/champions/amumu.png" alt="" />
+          Amumu (Jungle)
+        </button>
+        <button type="button" class="hero-btn" id="btn-swain">
+          <img src="https://www.wildriftguides.com/assets/champions/swain.png" alt="" />
+          Swain (Mid)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="gallery" id="canvas-gallery">
+
+    <!-- FORMAT 01: ESPORTS COMMAND BENTO -->
+    <article class="frame is-selected" id="frame-1" data-format="1">
+      <div class="frame__head">
+        <span class="frame__idx">01</span>
+        <div class="frame__meta">
+          <h2>The Esports Command Bento Grid</h2>
+          <p>Asymmetric 4-quadrant bento grid. Balances item progression, radiant keystone slot, dual-threat radar, and tactical combat advice.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(1)">Inspect Fullscreen</button>
+          <button type="button" class="btn btn--primary" id="btn-sel-1" onclick="selectFormat(1)">Select Format 01</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-1"></div>
+    </article>
+
+    <!-- FORMAT 02: MATCH PROGRESSION TIMELINE -->
+    <article class="frame" id="frame-2" data-format="2">
+      <div class="frame__head">
+        <span class="frame__idx">02</span>
+        <div class="frame__meta">
+          <h2>Sequential Match Progression Flow</h2>
+          <p>Chronological match timeline (Early Start &rarr; Boots Tier &rarr; 3-Item Spike &rarr; Full Armory) with parallel matchup sidebar.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(2)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-2" onclick="selectFormat(2)">Select Format 02</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-2"></div>
+    </article>
+
+    <!-- FORMAT 03: SPLIT MASTER-DETAIL DUAL COLUMN -->
+    <article class="frame" id="frame-3" data-format="3">
+      <div class="frame__head">
+        <span class="frame__idx">03</span>
+        <div class="frame__meta">
+          <h2>Split Master-Detail Dual Column</h2>
+          <p>35% left rail dedicated to Champion Identity, Runes pillar, and Skill max order; 65% right column for complete Equipment Armory and detailed Counters.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(3)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-3" onclick="selectFormat(3)">Select Format 03</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-3"></div>
+    </article>
+
+    <!-- FORMAT 04: SEGMENTED MODULAR TABS (APPLE HIG MODAL) -->
+    <article class="frame" id="frame-4" data-format="4">
+      <div class="frame__head">
+        <span class="frame__idx">04</span>
+        <div class="frame__meta">
+          <h2>Segmented Modular Tabs (Apple HIG Modal)</h2>
+          <p>Clean segmented topbar [Items &amp; Build] [Runes &amp; Spells] [Matchups &amp; Counters] [Game Plan] for ultra-focused inspection on desktop and mobile.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(4)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-4" onclick="selectFormat(4)">Select Format 04</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-4"></div>
+    </article>
+
+    <!-- FORMAT 05: HEXTECH BLUEPRINT SCHEMATIC -->
+    <article class="frame" id="frame-5" data-format="5">
+      <div class="frame__head">
+        <span class="frame__idx">05</span>
+        <div class="frame__meta">
+          <h2>Hextech Blueprint Schematic HUD</h2>
+          <p>Technical circuitry schematic with connected cyan energy lines linking Starter &rarr; Boots &rarr; Core components, with skill upgrade graph.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(5)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-5" onclick="selectFormat(5)">Select Format 05</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-5"></div>
+    </article>
+
+    <!-- FORMAT 06: MODULAR QUAD-DECK CAROUSEL -->
+    <article class="frame" id="frame-6" data-format="6">
+      <div class="frame__head">
+        <span class="frame__idx">06</span>
+        <div class="frame__meta">
+          <h2>Pro Deck Quad-Card Layout</h2>
+          <p>Modular four-card card layout: Loadout Armory card, Rune Matrix card, Threat Radar card, and Macro Playbook card.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(6)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-6" onclick="selectFormat(6)">Select Format 06</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-6"></div>
+    </article>
+
+    <!-- FORMAT 07: HIGH DENSITY ARMORY & INLINE NOTES -->
+    <article class="frame" id="frame-7" data-format="7">
+      <div class="frame__head">
+        <span class="frame__idx">07</span>
+        <div class="frame__meta">
+          <h2>High-Density Visual Armory &amp; Inline Notes</h2>
+          <p>Compact visual equipment slots with instant inline tactical advice explaining the exact win condition for each item purchase.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(7)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-7" onclick="selectFormat(7)">Select Format 07</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-7"></div>
+    </article>
+
+    <!-- FORMAT 08: COMBAT COUNTER & MATCHUP SIMULATOR -->
+    <article class="frame" id="frame-8" data-format="8">
+      <div class="frame__head">
+        <span class="frame__idx">08</span>
+        <div class="frame__meta">
+          <h2>Matchup-First Threat Simulator</h2>
+          <p>Puts threat intelligence front-and-center: Immediate visual enemy counter portraits and matchup strategy, with build counters below.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(8)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-8" onclick="selectFormat(8)">Select Format 08</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-8"></div>
+    </article>
+
+    <!-- FORMAT 09: CHAMPION SELECT FAST-GLANCE HUD -->
+    <article class="frame" id="frame-9" data-format="9">
+      <div class="frame__head">
+        <span class="frame__idx">09</span>
+        <div class="frame__meta">
+          <h2>Fast-Glance Champ Select Strip</h2>
+          <p>Streamlined linear strip optimized for rapid 5-second lookups during draft and loading screens (Items ribbon, Runes ribbon, Top 3 counters).</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(9)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-9" onclick="selectFormat(9)">Select Format 09</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-9"></div>
+    </article>
+
+    <!-- FORMAT 10: STRATEGIC MASTER GUIDEBOOK -->
+    <article class="frame" id="frame-10" data-format="10">
+      <div class="frame__head">
+        <span class="frame__idx">10</span>
+        <div class="frame__meta">
+          <h2>Longform Strategic Master Dossier</h2>
+          <p>Exhaustive tactical guide: Overview, deep-dive build analysis, rune synergies, skill priority, matchup breakdowns, and 4-phase game plan.</p>
+        </div>
+        <div class="frame__actions">
+          <button type="button" class="btn" onclick="openModal(10)">Inspect Fullscreen</button>
+          <button type="button" class="btn" id="btn-sel-10" onclick="selectFormat(10)">Select Format 10</button>
+        </div>
+      </div>
+      <div class="format-body" id="format-body-10"></div>
+    </article>
+
+  </main>
+
+  <!-- Fullscreen Modal Preview -->
+  <div class="modal" id="modal">
+    <button type="button" class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-wrap" id="modal-target"></div>
+  </div>
+
+<script>
+"use strict";
+
+const HEROES = {
+  amumu: {
+    name: "AMUMU",
+    role: "JUNGLE",
+    rank: "#1 Ladder Win Rate",
+    win: "55.88%", pick: "2.54%", ban: "0.09%",
+    avatar: "https://www.wildriftguides.com/assets/champions/amumu.png",
+    starting: { name: "Shimmering Spark", cost: "500g", img: "https://www.wildriftguides.com/assets/items/shimmering-spark.png", note: "Early magic burn speeds up camps." },
+    boots: { name: "Armored Advance", cost: "1400g", img: "https://www.wildriftguides.com/assets/items/armored-advance.png", note: "Armor and health to survive teamfight initiations." },
+    core: [
+      { name: "Searing Crown", cost: "2700g", img: "https://www.wildriftguides.com/assets/items/searing-crown.png", note: "Burn damage scales with target max health." },
+      { name: "Liandry's Torment", cost: "3000g", img: "https://www.wildriftguides.com/assets/items/liandrys-torment.png", note: "Amplifies prolonged combat damage." },
+      { name: "Thornmail", cost: "2700g", img: "https://www.wildriftguides.com/assets/items/thornmail.png", note: "Applies Grievous Wounds upon immobilizing." },
+      { name: "Amaranth's Twinguard", cost: "3200g", img: "https://www.wildriftguides.com/assets/items/amaranths-twinguard.png", note: "Huge armor & MR boost in extended fights." },
+      { name: "Abyssal Mask", cost: "2800g", img: "https://www.wildriftguides.com/assets/items/abyssal-mask.png", note: "Increases magic damage taken by nearby enemies." }
+    ],
+    situational: [
+      { name: "Randuin's Omen", cost: "2800g", img: "https://www.wildriftguides.com/assets/items/randuins-omen.png" },
+      { name: "Frozen Heart", cost: "2700g", img: "https://www.wildriftguides.com/assets/items/frozen-heart.png" }
+    ],
+    keystone: { name: "Aftershock", img: "https://www.wildriftguides.com/assets/Runes/aftershock.png", desc: "Gain defense and emit a shockwave on immobilizing." },
+    runes: [
+      { name: "Courage of the Colossus", img: "https://www.wildriftguides.com/assets/Runes/courage_of_the_colossus.png" },
+      { name: "Second Wind", img: "https://www.wildriftguides.com/assets/Runes/second_wind.png" },
+      { name: "Overgrowth", img: "https://www.wildriftguides.com/assets/Runes/overgrowth.png" },
+      { name: "Hextech Flashtraption", img: "https://www.wildriftguides.com/assets/Runes/hextech_flashtraption.png" }
+    ],
+    spells: [
+      { name: "Flash", img: "https://www.wildriftguides.com/assets/Summoner%20Spells/flash.png" },
+      { name: "Smite", img: "https://www.wildriftguides.com/assets/Summoner%20Spells/smite.png" }
+    ],
+    skillOrder: ["E", "W", "Q"],
+    counters: [
+      { champ: "Olaf", note: "Ragnarok completely ignores Curse of the Sad Mummy's crowd control." },
+      { champ: "Lee Sin", note: "Aggressive early counter-jungling kills Amumu before level 5." },
+      { champ: "Kayn", note: "Red Kayn shreds high-health tanks in prolonged skirmishes." }
+    ],
+    favored: [
+      { champ: "Master Yi", note: "Easily locked down by Bandage Toss during his engage windows." },
+      { champ: "Kha'Zix", note: "Cannot isolate or burst down tanky Amumu." },
+      { champ: "Evelynn", note: "Stunned and revealed before her execution threshold." }
+    ],
+    strategy: {
+      early: "Full clear toward bot side; avoid early skirmishes before unlocking level 5 ultimate.",
+      mid: "Group around Dragon & Rift Herald. Coordinate multi-man Curse of the Sad Mummy engages.",
+      late: "Primary teamfight vanguard. Flash + Bandage Toss onto enemy backline carries.",
+      teamfight: "Wait for enemy team to cluster, initiate with ultimate, and keep Despair active."
+    }
+  },
+  swain: {
+    name: "SWAIN",
+    role: "MID",
+    rank: "Tier S Battle-Mage",
+    win: "53.20%", pick: "4.15%", ban: "8.40%",
+    avatar: "https://www.wildriftguides.com/assets/champions/swain.png",
+    starting: { name: "Amplifying Tome", cost: "500g", img: "https://www.wildriftguides.com/assets/items/amplifying-tome.png", note: "Early AP for wave clear." },
+    boots: { name: "Spellslinger's Shoes", cost: "1400g", img: "https://www.wildriftguides.com/assets/items/spellslingers-shoes.png", note: "Magic penetration and movement speed." },
+    core: [
+      { name: "Malignance", cost: "3000g", img: "https://www.wildriftguides.com/assets/items/malignance.png", note: "Haste and burn zone during Demonic Ascension." },
+      { name: "Infinity Orb", cost: "3150g", img: "https://www.wildriftguides.com/assets/items/infinity-orb.png", note: "Crit damage against low-health enemies." },
+      { name: "Rabadon's Deathcap", cost: "3400g", img: "https://www.wildriftguides.com/assets/items/rabadons-deathcap.png", note: "Massive multiplier for damage and healing." },
+      { name: "Bloodletter's Curse", cost: "2900g", img: "https://www.wildriftguides.com/assets/items/bloodletters-curse.png", note: "Reduces enemy magic resistance continually." },
+      { name: "Zhonya's Hourglass", cost: "3000g", img: "https://www.wildriftguides.com/assets/items/zhonyas-hourglass.png", note: "Stasis while Demonic Ascension continues draining." }
+    ],
+    situational: [
+      { name: "Liandry's Torment", cost: "3000g", img: "https://www.wildriftguides.com/assets/items/liandrys-torment.png" },
+      { name: "Rylai's Crystal Scepter", cost: "2700g", img: "https://www.wildriftguides.com/assets/items/rylais-crystal-scepter.png" }
+    ],
+    keystone: { name: "Phase Rush", img: "https://www.wildriftguides.com/assets/Runes/phase_rush.png", desc: "Gain bursts of movement speed to stick to targets." },
+    runes: [
+      { name: "Axiom Arcanist", img: "https://www.wildriftguides.com/assets/Runes/axiom_arcanist.png" },
+      { name: "Transcendence", img: "https://www.wildriftguides.com/assets/Runes/transcendence.png" },
+      { name: "Nimbus Cloak", img: "https://www.wildriftguides.com/assets/Runes/nimbus_cloak.png" },
+      { name: "Bone Plating", img: "https://www.wildriftguides.com/assets/Runes/bone_plating.png" }
+    ],
+    spells: [
+      { name: "Flash", img: "https://www.wildriftguides.com/assets/Summoner%20Spells/flash.png" },
+      { name: "Ghost", img: "https://www.wildriftguides.com/assets/Summoner%20Spells/ghost.png" }
+    ],
+    skillOrder: ["Q", "W", "E"],
+    counters: [
+      { champ: "Syndra", note: "Out-ranges Nevermove and stun-bursts from safe distance." },
+      { champ: "Brand", note: "Stun interrupts engage, and AoE % HP burn melts drain tanking." },
+      { champ: "Viktor", note: "Gravity Field denies Demonic Ascension zone." }
+    ],
+    favored: [
+      { champ: "Vex", note: "Swain never dashes, denying Gloom passive while out-draining." },
+      { champ: "Fizz", note: "Demonic Ascension out-heals Fizz dive burst easily." },
+      { champ: "Yasuo", note: "Demonic Ascension drain is not stopped by Wind Wall." }
+    ],
+    strategy: {
+      early: "Land Nevermove (E) pulls to gather Soul Fragments and out-sustain enemy trades.",
+      mid: "Pop Demonic Ascension as river skirmishes commit and control choke points.",
+      late: "Frontline battle-mage. Use Zhonya's Stasis while ult continues draining whole teams.",
+      teamfight: "Zone enemy carries away from objectives with Vision of Empire and ultimate."
+    }
+  }
+};
+
+let activeKey = "amumu";
+let activeFormat = 1;
+
+function getHeroHeader(h) {
+  return `
+    <div class="hero-bar">
+      <div class="hero-identity">
+        <img class="hero-avatar" src="${h.avatar}" alt="" />
+        <div class="hero-names">
+          <h3>${h.name}</h3>
+          <div class="hero-tags">
+            <span class="role-badge">${h.role}</span>
+            <span class="rank-badge">${h.rank}</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-telemetry-strip">
+        <div class="tele-pill win"><span class="val">${h.win}</span><span class="lbl">Win Rate</span></div>
+        <div class="tele-pill pick"><span class="val">${h.pick}</span><span class="lbl">Pick Rate</span></div>
+        <div class="tele-pill ban"><span class="val">${h.ban}</span><span class="lbl">Ban Rate</span></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderFormats() {
+  const h = HEROES[activeKey];
+
+  // 01: ESPORTS COMMAND BENTO
+  document.getElementById("format-body-1").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:18px;">
+      <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:18px;">
+        <div class="sec-title"><span>Equipment Build Progression</span><strong>Patch 7.2e</strong></div>
+        <div style="font-size:var(--fs-caption); font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Starting Item &amp; Boots</div>
+        <div style="display:flex; gap:10px; margin-bottom:14px;">
+          <div class="item-slot"><img src="${h.starting.img}" /><span class="cost">${h.starting.cost}</span><span class="name">${h.starting.name}</span></div>
+          <div class="item-slot"><img src="${h.boots.img}" /><span class="cost">${h.boots.cost}</span><span class="name">${h.boots.name}</span></div>
+        </div>
+        <div style="font-size:var(--fs-caption); font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Core 5-Item Path</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          ${h.core.map(it => `<div class="item-slot core"><img src="${it.img}" /><span class="cost">${it.cost}</span><span class="name">${it.name}</span></div>`).join('')}
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+          <div class="sec-title"><span>Rune Matrix</span><strong>Optimal</strong></div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <img src="${h.keystone.img}" style="width:40px;height:40px;border-radius:50%;border:1.5px solid var(--accent);box-shadow:0 0 12px rgba(10,200,185,0.3);" />
+            <div>
+              <div style="font-weight:700; font-size:var(--fs-headline); color:#fff;">${h.keystone.name}</div>
+              <div style="font-size:var(--fs-caption); color:var(--text-muted);">${h.keystone.desc}</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; margin-top:12px;">
+            ${h.runes.map(r => `<img src="${r.img}" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--line-strong);" title="${r.name}" />`).join('')}
+          </div>
+        </div>
+
+        <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+          <div class="sec-title"><span>Threat Radar (Counters)</span></div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            ${h.counters.slice(0, 2).map(c => `
+              <div class="threat-box counter"><strong>${c.champ}</strong>: ${c.note}</div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 02: MATCH PROGRESSION TIMELINE
+  document.getElementById("format-body-2").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="display:grid; grid-template-columns:1fr 340px; gap:20px;">
+      <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:20px;">
+        <div class="sec-title"><span>Match Timeline &amp; Power Spikes</span><strong>Step-by-Step</strong></div>
+        <div style="display:flex; flex-direction:column; gap:16px; margin-top:10px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="font-family:var(--font-mono); font-weight:700; font-size:var(--fs-footnote); color:var(--accent); width:70px;">PHASE 1</div>
+            <div style="display:flex; gap:12px;">
+              <div class="item-slot"><img src="${h.starting.img}" /><span class="cost">${h.starting.cost}</span></div>
+              <div style="font-size:var(--fs-callout); color:var(--text-secondary); align-self:center;">Level 1 Starting Item: ${h.starting.name}. ${h.starting.note}</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="font-family:var(--font-mono); font-weight:700; font-size:var(--fs-footnote); color:var(--accent); width:70px;">PHASE 2</div>
+            <div style="display:flex; gap:12px;">
+              <div class="item-slot"><img src="${h.boots.img}" /><span class="cost">${h.boots.cost}</span></div>
+              <div style="font-size:var(--fs-callout); color:var(--text-secondary); align-self:center;">First Recall Boots: ${h.boots.name}. ${h.boots.note}</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="font-family:var(--font-mono); font-weight:700; font-size:var(--fs-footnote); color:var(--accent); width:70px;">PHASE 3</div>
+            <div style="display:flex; gap:8px;">
+              ${h.core.slice(0, 3).map(it => `<div class="item-slot core"><img src="${it.img}" /><span class="cost">${it.cost}</span></div>`).join('')}
+              <div style="font-size:var(--fs-callout); color:var(--text-secondary); align-self:center; margin-left:8px;">Mid-Game Core Spike. Decides first dragon &amp; herald fights.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+          <div class="sec-title"><span>Matchup Intel</span></div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            ${h.counters.slice(0, 2).map(c => `<div class="threat-box counter"><strong>${c.champ}</strong>: ${c.note}</div>`).join('')}
+            ${h.favored.slice(0, 1).map(c => `<div class="threat-box favored"><strong>${c.champ}</strong>: ${c.note}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 03: SPLIT MASTER-DETAIL DUAL COLUMN
+  document.getElementById("format-body-3").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="display:grid; grid-template-columns:320px 1fr; gap:20px;">
+      <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:16px;">
+        <div class="sec-title"><span>Rune &amp; Spell Anchor</span></div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="${h.keystone.img}" style="width:44px;height:44px;border-radius:50%;border:2px solid var(--accent);" />
+          <div>
+            <div style="font-weight:700; color:#fff; font-size:var(--fs-headline);">${h.keystone.name}</div>
+            <div style="font-size:var(--fs-caption); color:var(--text-muted);">Keystone</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          ${h.runes.map(r => `<img src="${r.img}" style="width:30px;height:30px;border-radius:50%;" title="${r.name}" />`).join('')}
+        </div>
+        <div style="border-top:1px solid var(--line); padding-top:12px;">
+          <div style="font-size:var(--fs-caption); color:var(--text-muted); text-transform:uppercase;">Skill Max Order</div>
+          <div class="mono" style="font-size:var(--fs-headline); font-weight:700; color:var(--accent); margin-top:4px;">${h.skillOrder.join(' &gt; ')}</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:18px;">
+          <div class="sec-title"><span>Complete Armory</span></div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <div class="item-slot"><img src="${h.starting.img}" /><span class="cost">${h.starting.cost}</span><span class="name">${h.starting.name}</span></div>
+            <div class="item-slot"><img src="${h.boots.img}" /><span class="cost">${h.boots.cost}</span><span class="name">${h.boots.name}</span></div>
+            ${h.core.map(it => `<div class="item-slot core"><img src="${it.img}" /><span class="cost">${it.cost}</span><span class="name">${it.name}</span></div>`).join('')}
+          </div>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:18px;">
+          <div class="sec-title"><span>Matchup Counters</span></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            ${h.counters.slice(0, 2).map(c => `<div class="threat-box counter"><strong>${c.champ}</strong>: ${c.note}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 04: SEGMENTED MODULAR TABS
+  document.getElementById("format-body-4").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:20px;">
+      <div style="display:flex; gap:6px; background:var(--bg-deep); padding:4px; border-radius:8px; width:max-content; margin-bottom:18px;">
+        <button type="button" class="btn btn--primary" style="font-size:var(--fs-footnote); padding:6px 14px;">⚔️ Items &amp; Build</button>
+        <button type="button" class="btn" style="font-size:var(--fs-footnote); padding:6px 14px;">🔮 Runes &amp; Spells</button>
+        <button type="button" class="btn" style="font-size:var(--fs-footnote); padding:6px 14px;">🛡️ Matchups &amp; Counters</button>
+        <button type="button" class="btn" style="font-size:var(--fs-footnote); padding:6px 14px;">📜 Game Plan</button>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <div class="item-slot"><img src="${h.starting.img}" /><span class="cost">${h.starting.cost}</span><span class="name">${h.starting.name}</span></div>
+        <div class="item-slot"><img src="${h.boots.img}" /><span class="cost">${h.boots.cost}</span><span class="name">${h.boots.name}</span></div>
+        ${h.core.map(it => `<div class="item-slot core"><img src="${it.img}" /><span class="cost">${it.cost}</span><span class="name">${it.name}</span></div>`).join('')}
+      </div>
+      <div style="margin-top:14px; font-size:var(--fs-callout); color:var(--text-secondary);">${h.strategy.early}</div>
+    </div>
+  `;
+
+  // 05: HEXTECH SCHEMATIC HUD
+  document.getElementById("format-body-5").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:20px; position:relative; overflow:hidden;">
+      <div class="sec-title"><span>Schematic Circuit Flow</span><strong style="color:var(--accent);">TRACE // ACTIVE</strong></div>
+      <div style="display:flex; align-items:center; gap:16px; margin-top:14px; overflow-x:auto;">
+        <div class="item-slot"><img src="${h.starting.img}" /><span class="name">Start</span></div>
+        <div style="color:var(--accent); font-weight:700;">&rarr;</div>
+        <div class="item-slot"><img src="${h.boots.img}" /><span class="name">Boots</span></div>
+        <div style="color:var(--accent); font-weight:700;">&rarr;</div>
+        ${h.core.map((it, i) => `
+          <div class="item-slot core"><img src="${it.img}" /><span class="name">Core ${i+1}</span></div>
+          ${i < h.core.length - 1 ? '<div style="color:var(--accent); font-weight:700;">&rarr;</div>' : ''}
+        `).join('')}
+      </div>
+      <div style="display:flex; gap:12px; margin-top:20px; border-top:1px solid var(--line); padding-top:14px;">
+        <div class="threat-box counter" style="flex:1;"><strong>Hard Counter:</strong> ${h.counters[0].champ} &mdash; ${h.counters[0].note}</div>
+        <div class="threat-box favored" style="flex:1;"><strong>Advantage:</strong> ${h.favored[0].champ} &mdash; ${h.favored[0].note}</div>
+      </div>
+    </div>
+  `;
+
+  // 06: MODULAR QUAD-DECK CAROUSEL
+  document.getElementById("format-body-6").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+      <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+        <div class="sec-title"><span>Card 1: Loadout</span></div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <div class="item-slot"><img src="${h.starting.img}" /></div>
+          <div class="item-slot"><img src="${h.boots.img}" /></div>
+          ${h.core.slice(0, 3).map(it => `<div class="item-slot core"><img src="${it.img}" /></div>`).join('')}
+        </div>
+      </div>
+      <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+        <div class="sec-title"><span>Card 2: Runes</span></div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <img src="${h.keystone.img}" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--accent);" />
+          <strong style="font-size:var(--fs-callout);">${h.keystone.name}</strong>
+        </div>
+      </div>
+      <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+        <div class="sec-title"><span>Card 3: Threat</span></div>
+        <div class="threat-box counter" style="font-size:var(--fs-caption);"><strong>${h.counters[0].champ}</strong>: ${h.counters[0].note.slice(0, 75)}...</div>
+      </div>
+      <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+        <div class="sec-title"><span>Card 4: Playbook</span></div>
+        <div style="font-size:var(--fs-caption); color:var(--text-secondary);">${h.strategy.early.slice(0, 95)}...</div>
+      </div>
+    </div>
+  `;
+
+  // 07: HIGH DENSITY ARMORY & INLINE NOTES
+  document.getElementById("format-body-7").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:20px;">
+      <div class="sec-title"><span>Tactical Item Analysis</span></div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+        ${h.core.slice(0, 4).map(it => `
+          <div style="display:flex; gap:12px; background:var(--bg-deep); border:1px solid var(--line); border-radius:8px; padding:10px;">
+            <img src="${it.img}" style="width:42px;height:42px;border-radius:6px;object-fit:cover;" />
+            <div>
+              <div style="font-weight:700; font-size:var(--fs-footnote); color:#fff;">${it.name} <span class="mono" style="color:var(--gold); font-size:10px;">${it.cost}</span></div>
+              <div style="font-size:var(--fs-caption); color:var(--text-muted); margin-top:2px;">${it.note}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // 08: COMBAT COUNTER & MATCHUP SIMULATOR
+  document.getElementById("format-body-8").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:20px;">
+      <div class="sec-title"><span>Combat Threat Intelligence (Front &amp; Center)</span></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-size:var(--fs-caption); font-weight:700; color:var(--rate-ban); text-transform:uppercase;">Primary Ban &amp; Threat Targets</span>
+          ${h.counters.map(c => `<div class="threat-box counter"><strong>${c.champ}</strong>: ${c.note}</div>`).join('')}
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-size:var(--fs-caption); font-weight:700; color:var(--rate-win); text-transform:uppercase;">Favorable Matchups to Exploit</span>
+          ${h.favored.map(c => `<div class="threat-box favored"><strong>${c.champ}</strong>: ${c.note}</div>`).join('')}
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--line); padding-top:14px; display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-size:var(--fs-caption); color:var(--text-muted);">Recommended Counter-Build:</span>
+        <div style="display:flex; gap:8px;">
+          ${h.core.slice(0, 5).map(it => `<img src="${it.img}" style="width:32px;height:32px;border-radius:6px;" title="${it.name}" />`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 09: CHAMPION SELECT FAST-GLANCE HUD
+  document.getElementById("format-body-9").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:16px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:var(--fs-caption); font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:4px;">Build Ribbon</div>
+          <div style="display:flex; gap:6px;">
+            <img src="${h.starting.img}" style="width:34px;height:34px;border-radius:6px;border:1px solid var(--line);" title="Start" />
+            <img src="${h.boots.img}" style="width:34px;height:34px;border-radius:6px;border:1px solid var(--line);" title="Boots" />
+            ${h.core.map(it => `<img src="${it.img}" style="width:34px;height:34px;border-radius:6px;border:1px solid var(--accent);" title="${it.name}" />`).join('')}
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:var(--fs-caption); font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;">Runes &amp; Spells</div>
+          <div style="display:flex; gap:6px; align-items:center;">
+            <img src="${h.keystone.img}" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--accent);" title="Keystone" />
+            ${h.runes.slice(0, 3).map(r => `<img src="${r.img}" style="width:24px;height:24px;border-radius:50%;" title="${r.name}" />`).join('')}
+            <div style="width:1px;height:24px;background:var(--line);margin:0 4px;"></div>
+            ${h.spells.map(s => `<img src="${s.img}" style="width:28px;height:28px;border-radius:6px;" title="${s.name}" />`).join('')}
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:var(--fs-caption); font-weight:700; color:var(--rate-ban); text-transform:uppercase; margin-bottom:4px;">Watch Out For</div>
+          <div style="font-size:var(--fs-callout); font-weight:700; color:#fff;">${h.counters.map(c => c.champ).join(', ')}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 10: STRATEGIC MASTER GUIDEBOOK
+  document.getElementById("format-body-10").innerHTML = `
+    ${getHeroHeader(h)}
+    <div style="background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:22px; display:flex; flex-direction:column; gap:20px;">
+      <div>
+        <div class="sec-title"><span>Chapter 1: Strategic Equipment Path</span><strong>Optimal Math</strong></div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div class="item-slot"><img src="${h.starting.img}" /><span class="cost">${h.starting.cost}</span><span class="name">${h.starting.name}</span></div>
+          <div class="item-slot"><img src="${h.boots.img}" /><span class="cost">${h.boots.cost}</span><span class="name">${h.boots.name}</span></div>
+          ${h.core.map(it => `<div class="item-slot core"><img src="${it.img}" /><span class="cost">${it.cost}</span><span class="name">${it.name}</span></div>`).join('')}
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:var(--bg-deep); border:1px solid var(--line); border-radius:8px; padding:14px;">
+          <div class="sec-title"><span>Early Game Phase</span></div>
+          <p style="font-size:var(--fs-callout); color:var(--text-secondary); line-height:1.6;">${h.strategy.early}</p>
+        </div>
+        <div style="background:var(--bg-deep); border:1px solid var(--line); border-radius:8px; padding:14px;">
+          <div class="sec-title"><span>Teamfight Execution</span></div>
+          <p style="font-size:var(--fs-callout); color:var(--text-secondary); line-height:1.6;">${h.strategy.teamfight}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Hero Toggle Events
+document.getElementById("btn-amumu").addEventListener("click", () => {
+  activeKey = "amumu";
+  document.getElementById("btn-amumu").classList.add("active");
+  document.getElementById("btn-swain").classList.remove("active");
+  renderFormats();
+});
+
+document.getElementById("btn-swain").addEventListener("click", () => {
+  activeKey = "swain";
+  document.getElementById("btn-swain").classList.add("active");
+  document.getElementById("btn-amumu").classList.remove("active");
+  renderFormats();
+});
+
+// Selection Logic
+function selectFormat(id) {
+  activeFormat = id;
+  for (let i = 1; i <= 10; i++) {
+    const f = document.getElementById("frame-" + i);
+    const b = document.getElementById("btn-sel-" + i);
+    if (f) f.classList.toggle("is-selected", i === id);
+    if (b) {
+      if (i === id) {
+        b.className = "btn btn--primary";
+        b.textContent = "Selected ✓";
+      } else {
+        b.className = "btn";
+        b.textContent = "Select Format " + (i < 10 ? "0" + i : i);
+      }
+    }
+  }
+  localStorage.setItem("wr-builds-format-choice", id);
+  alert("Format " + id + " selected! You can now ask Antigravity to: 'Apply format " + id + "'.");
+}
+
+function openModal(id) {
+  const target = document.getElementById("format-body-" + id);
+  if (!target) return;
+  const modal = document.getElementById("modal");
+  const modalTarget = document.getElementById("modal-target");
+  modalTarget.innerHTML = target.innerHTML;
+  modal.classList.add("is-open");
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.remove("is-open");
+}
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
+// Render initially
+renderFormats();
+</script>
+</body>
+</html>

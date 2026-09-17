@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Wild Rift Stats &mdash; Champion Rankings &amp; Tier List</title>
+  <meta name="description" content="English champion statistics and tier list for League of Legends: Wild Rift, ranked per role. Win, pick and ban rates, refreshed hourly." />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#07090e" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#edf1f7" media="(prefers-color-scheme: light)" />
+  <meta property="og:title" content="Wild Rift Stats — Champion Rankings &amp; Tier List" />
+  <meta property="og:description" content="Per-role champion win, pick and ban rates for Wild Rift, refreshed hourly." />
+  <meta property="og:type" content="website" />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("wr-theme");
+        var theme = stored === "light" || stored === "dark"
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) { /* keep default */ }
+    })();
+  </script>
+  <link rel="icon" type="image/jpeg" href="iconchrome.jpg" />
+  <link rel="apple-touch-icon" href="iconchrome.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="glow" aria-hidden="true"></div>
+
+  <!-- FLOATING APPLE NAVIGATION -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="#top" aria-label="Wild Rift Stats home">
+        <img class="brand-mark" src="iconchrome.jpg" alt="Wild Rift Stats" width="36" height="36" />
+        <div class="brand-text">
+          <h1>Wild Rift Stats</h1>
+          <p>Ranked Ladder Telemetry</p>
+        </div>
+      </a>
+
+      <nav class="views" id="views" aria-label="View selection">
+        <button type="button" data-view="stats" class="active">Stats</button>
+        <button type="button" data-view="tierlist">Tier List</button>
+        <button type="button" data-view="champions">Champions</button>
+      </nav>
+
+      <div class="topbar__meta">
+        <button type="button" id="theme-toggle" class="theme-switch" role="switch" aria-checked="true" aria-label="Toggle theme" title="Toggle theme">
+          <span class="theme-switch__icon theme-switch__icon--sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4.2"></circle>
+              <path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M6.7 17.3l-1.77 1.77M19.07 4.93l-1.77 1.77"></path>
+            </svg>
+          </span>
+          <span class="theme-switch__track" aria-hidden="true">
+            <span class="theme-switch__thumb"></span>
+          </span>
+          <span class="theme-switch__icon theme-switch__icon--moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <!-- HERO TELEMETRY CARDS (AWWWARDS POLISH) -->
+    <section class="hero-telemetry" aria-label="Meta Overview Telemetry">
+      <div class="hero-telemetry-card">
+        <div class="card-kpi-label">
+          <span>Meta Pulse</span>
+          <span class="mono" id="kpi-patch">Live Meta</span>
+        </div>
+        <div class="card-kpi-value" id="kpi-tracked-count">--</div>
+        <div class="card-kpi-sub" id="kpi-tier-name">Analyzing ladder statistics</div>
+      </div>
+
+      <div class="hero-telemetry-card" id="telemetry-king-card">
+        <div class="card-kpi-label">
+          <span>King of the Rift</span>
+          <span class="mono" id="kpi-king-rate">--%</span>
+        </div>
+        <div class="card-champ-inline" id="kpi-king-wrap">
+          <img id="kpi-king-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Crect width='100%25' height='100%25' fill='%23272931'/%3E%3C/svg%3E" alt="" />
+          <div class="card-champ-meta">
+            <span class="c-name" id="kpi-king-name">Loading&hellip;</span>
+            <span class="c-stat" id="kpi-king-role">Highest Win Rate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-telemetry-card" id="telemetry-contested-card">
+        <div class="card-kpi-label">
+          <span>Most Contested</span>
+          <span class="mono" id="kpi-contested-rate">--%</span>
+        </div>
+        <div class="card-champ-inline" id="kpi-contested-wrap">
+          <img id="kpi-contested-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Crect width='100%25' height='100%25' fill='%23272931'/%3E%3C/svg%3E" alt="" />
+          <div class="card-champ-meta">
+            <span class="c-name" id="kpi-contested-name">Loading&hellip;</span>
+            <span class="c-stat" id="kpi-contested-role">Top Pick &amp; Ban</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-telemetry-card">
+        <div class="card-kpi-label">
+          <span>Server Cycle</span>
+          <span class="mono">Hourly</span>
+        </div>
+        <div class="card-kpi-value mono" id="kpi-countdown">--:--</div>
+        <div class="card-kpi-sub">Next data sync with ladder</div>
+      </div>
+    </section>
+
+    <!-- SEGMENTED ROLE & BRACKET CONTROLS -->
+    <section class="controls-cluster" aria-label="Filters and Brackets">
+      <div class="tabs-scroll-track" aria-label="Rank bracket selection">
+        <div class="tier-tabs" id="tier-tabs" role="tablist" aria-label="Rank bracket"></div>
+      </div>
+      <div class="tabs-scroll-track" aria-label="Role selection">
+        <div class="role-tabs" id="role-tabs" role="tablist" aria-label="Role"></div>
+      </div>
+    </section>
+
+    <!-- STATS VIEW -->
+    <section id="view-stats">
+      <div class="search-toolbar">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input id="search-input" type="text" autocomplete="off" spellcheck="false"
+                 placeholder="Search a champion&hellip;" aria-label="Search champion" />
+          <span class="shortcut-badge" aria-hidden="true">&#x2318;K</span>
+          <button type="button" id="search-clear" class="search-clear" aria-label="Clear search filter" hidden>&times;</button>
+          <ul id="search-results" class="search-results" hidden></ul>
+        </div>
+      </div>
+
+      <div class="board">
+        <div class="table-container" tabindex="0" role="region" aria-label="Champion statistics table" aria-busy="true">
+          <table class="stats">
+            <thead>
+              <tr>
+                <th class="col-rank" data-sort="rank">#</th>
+                <th class="col-hero">Champion</th>
+                <th class="col-role">Role</th>
+                <th class="col-rate sortable" data-sort="win">Win Rate <i class="caret"></i></th>
+                <th class="col-rate sortable" data-sort="pick">Pick Rate <i class="caret"></i></th>
+                <th class="col-rate sortable" data-sort="ban">Ban Rate <i class="caret"></i></th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr class="sk-row" aria-hidden="true">
+                <td class="col-rank"><span class="sk sk-rank"></span></td>
+                <td class="col-hero"><div class="hero"><span class="sk sk-avatar"></span><span class="sk sk-name"></span></div></td>
+                <td class="col-role"><span class="sk sk-badge"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+              </tr>
+              <tr class="sk-row" aria-hidden="true">
+                <td class="col-rank"><span class="sk sk-rank"></span></td>
+                <td class="col-hero"><div class="hero"><span class="sk sk-avatar"></span><span class="sk sk-name"></span></div></td>
+                <td class="col-role"><span class="sk sk-badge"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+              </tr>
+              <tr class="sk-row" aria-hidden="true">
+                <td class="col-rank"><span class="sk sk-rank"></span></td>
+                <td class="col-hero"><div class="hero"><span class="sk sk-avatar"></span><span class="sk sk-name"></span></div></td>
+                <td class="col-role"><span class="sk sk-badge"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+                <td class="col-rate"><span class="sk sk-rate"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="board-meta-bar">
+          <span id="source-note">Ranked Ladder &middot; Hourly update</span>
+          <span class="mono">Click any champion for full inspection</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIER LIST VIEW -->
+    <section id="view-tierlist" hidden>
+      <div class="tierlist-header-bar">
+        <div class="tierlist-title-wrap">
+          <span class="tierlist-title">Automated Tier List</span>
+          <span class="tierlist-sub" id="tierlist-sub"></span>
+        </div>
+        <div class="tierlist-actions">
+          <div class="tier-grade-tabs" id="tier-grade-tabs" role="tablist" aria-label="Filter by Tier Grade">
+            <button type="button" class="active" data-grade="all">All Tiers</button>
+            <button type="button" data-grade="splus">S+</button>
+            <button type="button" data-grade="s">S</button>
+            <button type="button" data-grade="a">A</button>
+            <button type="button" data-grade="b">B</button>
+            <button type="button" data-grade="c">C</button>
+          </div>
+          <button id="compact-btn" class="ghost-btn" type="button" aria-pressed="false">Compact</button>
+        </div>
+      </div>
+      <div id="tierlist" class="tierlist">
+        <div class="placeholder">Loading tier list&hellip;</div>
+      </div>
+      <div class="board-meta-bar" style="margin-top: 16px; border-radius: var(--radius);">
+        <span id="tierlist-note">Tier placements sourced from WildRiftFire and synchronized hourly.</span>
+        <span class="mono">Tap champion to jump to stats</span>
+      </div>
+    </section>
+
+    <!-- CHAMPIONS ROSTER & BUILDS VIEW -->
+    <section id="view-champions" hidden>
+      <div class="champions-toolbar">
+        <p class="champions-lead">Search or filter by lane role to inspect full build paths, runes, and counters.</p>
+        <div class="search-box champions-search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 14z"/>
+          </svg>
+          <input id="champ-search-input" type="text" autocomplete="off" spellcheck="false"
+                 placeholder="Search champions&hellip;" aria-label="Search champions" />
+          <span class="shortcut-badge" aria-hidden="true">&#x2318;K</span>
+          <button type="button" id="champ-search-clear" class="search-clear" aria-label="Clear search filter" hidden>&times;</button>
+        </div>
+
+        <div class="champ-role-tabs" id="champ-role-tabs" role="tablist" aria-label="Filter Champions by Role">
+          <button type="button" class="active" data-role="all">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>ALL ROLES</span>
+          </button>
+          <button type="button" data-role="baron">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path fill-rule="evenodd" d="M12 2.2c-.8 2.2-2.5 3.8-4.5 4.5L4 4.5c.5 3.5.2 6.5-1.5 8.5 2.5.5 4.5-.5 6-2-1 2.5-2 5-4.5 6.5 4 .5 6.5-1.5 8-4 1.5 2.5 4 4.5 8 4-2.5-1.5-3.5-4-4.5-6.5 1.5 1.5 3.5 2.5 6 2-1.7-2-2-5-1.5-8.5l-3.5 2.5c-2-.7-3.7-2.3-4.5-4.5zm0 7.2l2.2 2.8-2.2 2.8-2.2-2.8 2.2-2.8z"/></svg>
+            <span>BARON</span>
+          </button>
+          <button type="button" data-role="jungle">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 21.5c.3-5 1.8-11.2 4.2-15.2-1.5 4.5-1.2 10.5-.2 15.2H6zm5.5 0c.2-6.5 1-13 2.5-19.5 0 6.5 0 13-1.5 19.5h-1zm4.5 0c-.5-5 .2-10 3.2-14.8-.6 4.8.5 10.2 2 14.8H16z"/></svg>
+            <span>JUNGLE</span>
+          </button>
+          <button type="button" data-role="mid">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 1.8l-2.6 13.7 2.6 6.5 2.6-6.5L12 1.8zM4.2 13.5C5.5 11 6.8 8.5 7.8 6c-.2 3.5.5 7.5 1.6 11-2.6-1-4.2-2-5.2-3.5zm15.6 0c-1.3-2.5-2.6-5-3.6-7.5.2 3.5-.5 7.5-1.6 11 2.6-1 4.2-2 5.2-3.5z"/></svg>
+            <span>MID</span>
+          </button>
+          <button type="button" data-role="duo">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7.8 3.5c-.8 2.2-1.8 4.2-3.2 5.5 1.4.2 2.4 0 3-.5-.5 2-1.5 3.8-2.6 4.8 1.4.2 2.4 0 3-.5-.8 3-1.2 5.5-1.8 8.2 2-1 3.5-3 4-6V3.5H7.8zm8.4 0c.8 2.2 1.8 4.2 3.2 5.5-1.4.2-2.4 0-3-.5.5 2 1.5 3.8 2.6 4.8-1.4.2-2.4 0-3-.5.8 3 1.2 5.5 1.8 8.2-2-1-3.5-3-4-6V3.5h2.4z"/></svg>
+            <span>DUO</span>
+          </button>
+          <button type="button" data-role="support">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 3.5h6l-1.5 3.5h-3L9 3.5zm1.8 5h2.4l1.2 6.5-2.4 6.5-2.4-6.5 1.2-6.5zM3.8 8c2.5.5 4.5 2 5.7 4.5-2 .5-4.2 0-5.7-1.5-.2-1-.2-2 0-3zm16.4 0c-2.5.5-4.5 2-5.7 4.5 2 .5 4.2 0 5.7-1.5.2-1 .2-2 0-3z"/></svg>
+            <span>SUPPORT</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="champions-grid" id="champions-grid">
+        <div class="placeholder">Loading champions roster&hellip;</div>
+      </div>
+
+      <div class="board-meta-bar" style="margin-top: 16px; border-radius: var(--radius);">
+        <span id="champ-count-note">141 Champions &middot; Pro Builds &amp; Counters</span>
+        <span class="mono">Click any champion to inspect build</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- CHAMPION QUICK-VIEW & ESPORTS COMMAND BENTO MODAL (FORMAT 01) -->
+  <div id="champion-sheet-scrim" class="sheet-scrim" aria-hidden="true"></div>
+  <aside id="champion-sheet" class="apple-sheet bento-sheet" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Champion Details &amp; Build">
+    <div class="sheet-head-bar">
+      <div class="sheet-hero-identity">
+        <img id="sheet-avatar" class="sheet-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='100%25' height='100%25' fill='%23272931'/%3E%3C/svg%3E" alt="" />
+        <div class="sheet-title-col">
+          <div class="sheet-title-row">
+            <h2 id="sheet-name" class="sheet-name">Champion Name</h2>
+            <div id="sheet-role-switcher" class="sheet-role-switcher"></div>
+          </div>
+          <div class="sheet-tags">
+            <span id="sheet-role" class="role-badge">Role</span>
+            <span id="sheet-rank" class="rank">#1</span>
+            <span id="sheet-patch" class="patch-badge">Patch 7.2e</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-tele-strip" id="sheet-tele-strip">
+        <div class="tele-pill win"><span class="val" id="sheet-win">--%</span><span class="lbl">Win Rate</span><span class="delta" id="sheet-win-delta"></span></div>
+        <div class="tele-pill pick"><span class="val" id="sheet-pick">--%</span><span class="lbl">Pick Rate</span><span class="delta" id="sheet-pick-delta"></span></div>
+        <div class="tele-pill ban"><span class="val" id="sheet-ban">--%</span><span class="lbl">Ban Rate</span><span class="delta" id="sheet-ban-delta"></span></div>
+      </div>
+
+      <button type="button" id="sheet-close" class="sheet-close-btn" aria-label="Close sheet">&times;</button>
+    </div>
+
+    <!-- FORMAT 01: ESPORTS COMMAND BENTO BODY -->
+    <div class="bento-body" id="bento-body">
+      <!-- Injected dynamically based on Format 01 -->
+    </div>
+  </aside>
+
+  <!-- FORMAT 05: ESPORTS STUDIO SPLIT FOOTER -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-inner">
+      <!-- Left: Big Brand Pillar -->
+      <div class="footer-brand-pillar">
+        <div class="footer-title-row">
+          <img src="iconchrome.jpg" alt="Wild Rift Guides Logo" class="footer-brand-logo" width="48" height="48" />
+          <div class="footer-brand-info">
+            <div class="footer-brand-title">Wild Rift Guides</div>
+            <div class="footer-brand-sub">Builds &middot; Items &middot; Runes</div>
+          </div>
+        </div>
+        <p class="footer-brand-tagline">
+          The Best Wild Rift Guides, made by the Best Wild Rift Players.
+        </p>
+        <a href="https://www.facebook.com/m0ypsg44" target="_blank" rel="noopener noreferrer" class="footer-facebook-btn" aria-label="Follow m0ypsg44 on Facebook">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span>Follow on Facebook</span>
+        </a>
+      </div>
+
+      <!-- Right: Grid with Explore & Compliance Card -->
+      <div class="footer-right-grid">
+        <div class="footer-explore-col">
+          <h4 class="footer-col-heading">Explore</h4>
+          <ul class="footer-nav-list">
+            <li>
+              <a href="#view-champions" class="footer-nav-link" data-footer-view="champions">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>Champions</span>
+              </a>
+            </li>
+            <li>
+              <a href="#view-champions" class="footer-nav-link" data-footer-view="items">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>Items &amp; Equipment</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-compliance-card">
+          <div class="compliance-header">
+            <h4 class="footer-col-heading" style="margin-bottom: 0;">About &amp; Legal</h4>
+            <div class="compliance-actions">
+              <button type="button" class="legal-modal-trigger" id="footer-privacy-btn">Privacy</button>
+              <span class="compliance-sep">&bull;</span>
+              <button type="button" class="legal-modal-trigger" id="footer-terms-btn">Terms</button>
+            </div>
+          </div>
+          <p class="footer-disclaimer">
+            Wild Rift Guides was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project. League of Legends and Riot Games are trademarks of Riot Games, Inc.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE LEGAL MODAL -->
+  <div class="legal-modal-backdrop" id="legal-modal" aria-hidden="true">
+    <div class="legal-modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 id="modal-title">Legal Document</h3>
+        <button type="button" class="modal-close" id="modal-close-btn" aria-label="Close legal modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- AWWWARDS SCROLL-TO-TOP FLOATING ACTION BUTTON -->
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll back to top" title="Back to top">
+    <svg class="scroll-top-progress" viewBox="0 0 44 44" aria-hidden="true">
+      <circle class="progress-track" cx="22" cy="22" r="18"></circle>
+      <circle class="progress-bar" id="scroll-progress-bar" cx="22" cy="22" r="18"></circle>
+    </svg>
+    <span class="scroll-top-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </span>
+  </button>
+
+  <!-- ROW TEMPLATE WITH HIGH PRECISION APPLE GAUGES -->
+  <template id="row-template">
+    <tr>
+      <td class="col-rank"><span class="rank"></span></td>
+      <td class="col-hero">
+        <div class="hero">
+          <img class="hero-avatar" alt="" loading="lazy" />
+          <span class="hero-name"></span>
+        </div>
+      </td>
+      <td class="col-role"><span class="role-badge"></span></td>
+      <td class="col-rate">
+        <div class="rate-cell-wrap">
+          <span class="rate-val win"></span>
+          <div class="rate-meter" aria-hidden="true"><div class="rate-fill win"></div></div>
+        </div>
+      </td>
+      <td class="col-rate">
+        <div class="rate-cell-wrap">
+          <span class="rate-val pick"></span>
+          <div class="rate-meter" aria-hidden="true"><div class="rate-fill pick"></div></div>
+        </div>
+      </td>
+      <td class="col-rate">
+        <div class="rate-cell-wrap">
+          <span class="rate-val ban"></span>
+          <div class="rate-meter" aria-hidden="true"><div class="rate-fill ban"></div></div>
+        </div>
+      </td>
+    </tr>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

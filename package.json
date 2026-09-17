@@ -1,0 +1,16 @@
+{
+  "name": "wildrift-stats",
+  "version": "1.0.0",
+  "private": true,
+  "description": "English champion statistics board for League of Legends: Wild Rift (CN server). Per-role rankings with hourly refresh, proxied through a zero-dependency Node server.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "javascript-obfuscator": "^5.7.0"
+  }
+}

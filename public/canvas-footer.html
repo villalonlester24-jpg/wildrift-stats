@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Footer Design Canvas — 5 Custom Layout Formats</title>
+<meta name="description" content="Explore 5 custom footer design canvases based on your preferences: iconchrome logo, Facebook community link, Explore column, and Riot Games Legal compliance." />
+<link rel="icon" type="image/jpeg" href="iconchrome.jpg" />
+<link rel="apple-touch-icon" href="iconchrome.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ==========================================================================
+   HEXTECH CYBER RIFT DESIGN SYSTEM & TOKENS
+   ========================================================================== */
+:root {
+  --bg: #07090e;
+  --bg-deep: #040508;
+  --surface: #0e111a;
+  --surface-2: #141926;
+  --surface-hover: #1b2234;
+  --line: #1c2438;
+  --line-strong: #2a3754;
+  --line-glow: rgba(10, 200, 185, 0.45);
+  
+  --text-primary: #e8ecf8;
+  --text-title: #ffffff;
+  --text-secondary: #a6b5d9;
+  --text-muted: #6f7c9e;
+
+  --accent: #0ac8b9;
+  --accent-soft: rgba(10, 200, 185, 0.12);
+  --accent-glow: 0 0 20px rgba(10, 200, 185, 0.28);
+  --accent-grad: linear-gradient(135deg, #0ac8b9 0%, #008f84 100%);
+  --accent-ink: #041014;
+
+  --fb-blue: #1877f2;
+  --fb-glow: rgba(24, 119, 242, 0.35);
+
+  --font-display: "Space Grotesk", -apple-system, sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(55rem 30rem at 14% -5%, rgba(10, 200, 185, 0.1), transparent 70%),
+    radial-gradient(50rem 26rem at 86% -2%, rgba(80, 166, 255, 0.08), transparent 70%),
+    var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+button { font: inherit; cursor: pointer; border: none; background: transparent; }
+a { color: inherit; text-decoration: none; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Sticky Top Bar */
+.canvas-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7, 9, 14, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 24px;
+}
+.canvas-topbar__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  border: 1px solid rgba(10, 200, 185, 0.25);
+  transition: all 0.2s ease;
+}
+.back-btn:hover {
+  background: rgba(10, 200, 185, 0.22);
+  transform: translateX(-2px);
+}
+.topbar-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-title);
+  letter-spacing: -0.01em;
+}
+.topbar-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--surface);
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+}
+.tab-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+}
+.tab-btn:hover { color: var(--text-title); }
+.tab-btn.active {
+  background: var(--accent-grad);
+  color: var(--accent-ink);
+  box-shadow: 0 0 12px rgba(10, 200, 185, 0.4);
+}
+
+/* Page Header */
+.page-intro {
+  max-width: 1400px;
+  margin: 40px auto 20px;
+  padding: 0 24px;
+}
+.page-intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text-title);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+.page-intro p {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 80ch;
+}
+
+/* Canvas Sections */
+.canvas-container {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+.canvas-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.canvas-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+}
+.canvas-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.canvas-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(10, 200, 185, 0.25);
+}
+.canvas-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-title);
+  margin-left: 10px;
+}
+.canvas-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.canvas-select-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background: rgba(10, 200, 185, 0.15);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  transition: all 0.2s ease;
+}
+.canvas-select-btn:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 0 14px rgba(10, 200, 185, 0.4);
+}
+
+/* Simulated Website Content Wrapper inside Canvas */
+.canvas-viewport {
+  background: var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+}
+.viewport-dummy {
+  padding: 40px 32px;
+  background: linear-gradient(180deg, rgba(14, 17, 26, 0.4) 0%, rgba(7, 9, 14, 0.95) 100%);
+  border-bottom: 1px solid rgba(28, 36, 56, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dummy-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+.dummy-tag {
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   SHARED FOOTER COMPONENTS & STYLES
+   ========================================================================== */
+.footer-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1.5px solid rgba(10, 200, 185, 0.45);
+  box-shadow: 0 0 16px rgba(10, 200, 185, 0.35);
+  flex-shrink: 0;
+}
+.footer-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.footer-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-title);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.footer-subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.footer-tagline {
+  margin-top: 14px;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  line-height: 1.5;
+  max-width: 44ch;
+}
+.facebook-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(24, 119, 242, 0.12);
+  border: 1px solid rgba(24, 119, 242, 0.4);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 18px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 14px rgba(24, 119, 242, 0.2);
+}
+.facebook-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: #1877f2;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+.facebook-btn:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(24, 119, 242, 0.5);
+  transform: translateY(-2px);
+}
+.facebook-btn:hover svg {
+  fill: #ffffff;
+  transform: scale(1.1);
+}
+
+.col-heading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-nav-link {
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+.footer-nav-link:hover {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+.footer-disclaimer {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  max-width: 50ch;
+  margin-top: 16px;
+}
+.legal-modal-trigger {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgba(166, 181, 217, 0.3);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.legal-modal-trigger:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* ==========================================================================
+   FORMAT 01: PURE REFERENCE MINIMALIST (1:1 Proportional Match)
+   ========================================================================== */
+.footer-f1 {
+  padding: 50px 48px;
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.3fr;
+  gap: 40px;
+  align-items: start;
+  background: #07090e;
+  border-top: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   FORMAT 02: CYBER GLASS BENTO (Segmented Frosted Pods)
+   ========================================================================== */
+.footer-f2 {
+  padding: 40px 36px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.85fr 1.35fr;
+  gap: 20px;
+  background: radial-gradient(40rem 20rem at 50% 100%, rgba(10, 200, 185, 0.07), transparent 80%), #040508;
+  border-top: 1px solid var(--line);
+}
+.f2-pod {
+  background: rgba(14, 17, 26, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(28, 36, 56, 0.85);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  transition: all 0.25s ease;
+}
+.f2-pod:hover {
+  border-color: rgba(10, 200, 185, 0.3);
+  background: rgba(20, 25, 38, 0.75);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* ==========================================================================
+   FORMAT 03: COMMAND CENTER TELEMETRY BAR
+   ========================================================================== */
+.footer-f3 {
+  background: #07090e;
+  border-top: 1px solid rgba(10, 200, 185, 0.3);
+}
+.f3-telemetry-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 48px;
+  background: rgba(10, 200, 185, 0.05);
+  border-bottom: 1px solid rgba(10, 200, 185, 0.15);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+.f3-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.footer-f3-body {
+  padding: 44px 48px;
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.3fr;
+  gap: 40px;
+}
+
+/* ==========================================================================
+   FORMAT 04: FLOATING ELEVATED HORIZON
+   ========================================================================== */
+.footer-f4-wrap {
+  padding: 30px 40px 40px;
+  background: #040508;
+}
+.footer-f4 {
+  background: linear-gradient(180deg, #0f131d 0%, #080a10 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  padding: 44px 48px 36px;
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.3fr;
+  gap: 44px;
+}
+.footer-f4::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* ==========================================================================
+   FORMAT 05: ESPORTS STUDIO SPLIT (45% Hero Brand + 55% Partition Grid)
+   ========================================================================== */
+.footer-f5 {
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  background: #07090e;
+  border-top: 2px solid var(--line);
+}
+.f5-brand-pillar {
+  border-right: 1px solid rgba(28, 36, 56, 0.7);
+  padding-right: 50px;
+}
+.f5-right-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 36px;
+}
+.f5-compliance-card {
+  background: rgba(14, 17, 26, 0.6);
+  border: 1px solid rgba(28, 36, 56, 0.8);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+}
+
+/* ==========================================================================
+   INTERACTIVE LEGAL MODAL
+   ========================================================================== */
+.legal-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(4, 5, 8, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.legal-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.legal-modal-box {
+  background: #0e111a;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  width: min(640px, 100%);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.8), 0 0 30px rgba(10, 200, 185, 0.2);
+  transform: translateY(16px) scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.legal-modal-backdrop.open .legal-modal-box {
+  transform: translateY(0) scale(1);
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.modal-header h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-title);
+}
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 20px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.modal-close:hover {
+  background: var(--surface-2);
+  color: var(--text-title);
+}
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.modal-body h4 {
+  font-family: var(--font-display);
+  color: var(--text-title);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* Toast for Selection */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 10px 30px rgba(10, 200, 185, 0.5);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2000;
+  pointer-events: none;
+}
+.toast-notice.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .footer-f1, .footer-f2, .footer-f3-body, .footer-f4, .footer-f5, .f5-right-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .f5-brand-pillar { border-right: none; padding-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY TOPBAR NAV -->
+<header class="canvas-topbar">
+  <div class="canvas-topbar__inner">
+    <div class="topbar-left">
+      <a href="/" class="back-btn" title="Return to Live Site">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Back to Live App</span>
+      </a>
+      <div class="topbar-title">Footer Design Showcase</div>
+    </div>
+    
+    <nav class="topbar-tabs" id="format-nav" aria-label="Footer Formats">
+      <button type="button" class="tab-btn active" data-target="all">All Formats</button>
+      <button type="button" class="tab-btn" data-target="f1">01: Reference Minimalist</button>
+      <button type="button" class="tab-btn" data-target="f2">02: Cyber Glass Bento</button>
+      <button type="button" class="tab-btn" data-target="f3">03: Command Center</button>
+      <button type="button" class="tab-btn" data-target="f4">04: Elevated Horizon</button>
+      <button type="button" class="tab-btn" data-target="f5">05: Esports Studio</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- INTRO -->
+  <section class="page-intro">
+    <h1>Select Your Preferred Footer Architecture</h1>
+    <p>
+      Created specifically based on your 15 answers: <strong>iconchrome.jpg</strong> brand icon, 
+      <strong>WILD RIFT GUIDES / BUILDS &middot; ITEMS &middot; RUNES</strong> branding, 
+      <strong>Facebook</strong> community action button, <strong>EXPLORE</strong> column with Champions &amp; Items, 
+      <strong>ABOUT &amp; LEGAL</strong> with interactive policy popups, and the official <strong>Riot Games "Legal Jibber Jabber"</strong> disclaimer.
+    </p>
+  </section>
+
+  <!-- 5 CANVASES CONTAINER -->
+  <div class="canvas-container" id="canvas-container">
+
+    <!-- ====================================================================
+         CANVAS 01: PURE REFERENCE MINIMALIST
+         ==================================================================== -->
+    <article class="canvas-card" id="card-f1">
+      <div class="canvas-meta">
+        <div>
+          <span class="canvas-num">FORMAT 01</span>
+          <span class="canvas-name">Pure Reference Minimalist</span>
+          <span class="canvas-desc">&mdash; 1:1 proportional translation of the reference screenshot in Hextech dark tones</span>
+        </div>
+        <button type="button" class="canvas-select-btn" onclick="selectFormat('01: Pure Reference Minimalist')">Select Format 01</button>
+      </div>
+
+      <div class="canvas-viewport">
+        <div class="viewport-dummy">
+          <span class="dummy-title">Wild Rift Stats &middot; Page Content Stream</span>
+          <span class="dummy-tag">Live Preview</span>
+        </div>
+
+        <footer class="footer-f1">
+          <!-- Left: Brand & Social -->
+          <div>
+            <div class="footer-title-row">
+              <img src="iconchrome.jpg" alt="Logo" class="footer-logo" />
+              <div>
+                <div class="footer-title">Wild Rift Guides</div>
+                <div class="footer-subtitle">Builds &middot; Items &middot; Runes</div>
+              </div>
+            </div>
+            <p class="footer-tagline">The Best Wild Rift Guides, made by the Best Wild Rift Players.</p>
+            <a href="https://www.facebook.com/m0ypsg44" target="_blank" rel="noopener noreferrer" class="facebook-btn">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Follow on Facebook</span>
+            </a>
+          </div>
+
+          <!-- Middle: Explore -->
+          <div>
+            <h4 class="col-heading">Explore</h4>
+            <ul class="footer-nav-list">
+              <li><a href="/#view-champions" class="footer-nav-link">Champions</a></li>
+              <li><a href="/#view-champions" class="footer-nav-link">Items &amp; Equipment</a></li>
+            </ul>
+          </div>
+
+          <!-- Right: About & Legal -->
+          <div>
+            <h4 class="col-heading">About &amp; Legal</h4>
+            <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+              <button type="button" class="legal-modal-trigger" onclick="openLegalModal('privacy')">Privacy Policy</button>
+              <button type="button" class="legal-modal-trigger" onclick="openLegalModal('terms')">Terms of Service</button>
+            </div>
+            <p class="footer-disclaimer">
+              Wild Rift Guides was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project. League of Legends and Riot Games are trademarks of Riot Games, Inc.
+            </p>
+          </div>
+        </footer>
+      </div>
+    </article>
+
+
+    <!-- ====================================================================
+         CANVAS 02: CYBER GLASS BENTO
+         ==================================================================== -->
+    <article class="canvas-card" id="card-f2">
+      <div class="canvas-meta">
+        <div>
+          <span class="canvas-num">FORMAT 02</span>
+          <span class="canvas-name">Cyber Glass Bento</span>
+          <span class="canvas-desc">&mdash; Frosted glass modular pods with subtle reactive cyan borders</span>
+        </div>
+        <button type="button" class="canvas-select-btn" onclick="selectFormat('02: Cyber Glass Bento')">Select Format 02</button>
+      </div>
+
+      <div class="canvas-viewport">
+        <div class="viewport-dummy">
+          <span class="dummy-title">Wild Rift Stats &middot; Page Content Stream</span>
+          <span class="dummy-tag">Live Preview</span>
+        </div>
+
+        <footer class="footer-f2">
+          <!-- Card 1: Brand -->
+          <div class="f2-pod">
+            <div class="footer-title-row">
+              <img src="iconchrome.jpg" alt="Logo" class="footer-logo" />
+              <div>
+                <div class="footer-title">Wild Rift Guides</div>
+                <div class="footer-subtitle">Builds &middot; Items &middot; Runes</div>
+              </div>
+            </div>
+            <p class="footer-tagline">The Best Wild Rift Guides, made by the Best Wild Rift Players.</p>
+            <a href="https://www.facebook.com/m0ypsg44" target="_blank" rel="noopener noreferrer" class="facebook-btn">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Follow on Facebook</span>
+            </a>
+          </div>
+
+          <!-- Card 2: Explore -->
+          <div class="f2-pod">
+            <h4 class="col-heading">Explore</h4>
+            <ul class="footer-nav-list">
+              <li>
+                <a href="/#view-champions" class="footer-nav-link">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Champions Roster
+                </a>
+              </li>
+              <li>
+                <a href="/#view-champions" class="footer-nav-link">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Items &amp; Equipment
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 3: Legal -->
+          <div class="f2-pod">
+            <h4 class="col-heading">About &amp; Legal</h4>
+            <div style="display: flex; gap: 14px; margin-bottom: 12px;">
+              <button type="button" class="legal-modal-trigger" onclick="openLegalModal('privacy')">Privacy Policy</button>
+              <span style="color: var(--line-strong)">&middot;</span>
+              <button type="button" class="legal-modal-trigger" onclick="openLegalModal('terms')">Terms of Service</button>
+            </div>
+            <p class="footer-disclaimer">
+              Wild Rift Guides was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project. League of Legends and Riot Games are trademarks of Riot Games, Inc.
+            </p>
+          </div>
+        </footer>
+      </div>
+    </article>
+
+
+    <!-- ====================================================================
+         CANVAS 03: COMMAND CENTER TELEMETRY BAR
+         ==================================================================== -->
+    <article class="canvas-card" id="card-f3">
+      <div class="canvas-meta">
+        <div>
+          <span class="canvas-num">FORMAT 03</span>
+          <span class="canvas-name">Command Center Telemetry Bar</span>
+          <span class="canvas-desc">&mdash; Real-time server telemetry ribbon paired with terminal-styled column hierarchy</span>
+        </div>
+        <button type="button" class="canvas-select-btn" onclick="selectFormat('03: Command Center Telemetry Bar')">Select Format 03</button>
+      </div>
+
+      <div class="canvas-viewport">
+        <div class="viewport-dummy">
+          <span class="dummy-title">Wild Rift Stats &middot; Page Content Stream</span>
+          <span class="dummy-tag">Live Preview</span>
+        </div>
+
+        <footer class="footer-f3">
+          <!-- Top Telemetry Ribbon -->
+          <div class="f3-telemetry-ribbon">
+            <div><span class="f3-pulse-dot"></span>CN LADDER TELEMETRY &middot; LIVE SYNC</div>
+            <div>PATCH 7.2E &middot; 141 CHAMPION BUILDS COMPILED</div>
+          </div>
+
+          <div class="footer-f3-body">
+            <!-- Left -->
+            <div>
+              <div class="footer-title-row">
+                <img src="iconchrome.jpg" alt="Logo" class="footer-logo" />
+                <div>
+                  <div class="footer-title">Wild Rift Guides</div>
+                  <div class="footer-subtitle">// BUILDS &middot; ITEMS &middot; RUNES</div>
+                </div>
+              </div>
+              <p class="footer-tagline">The Best Wild Rift Guides, made by the Best Wild Rift Players.</p>
+              <a href="https://www.facebook.com/m0ypsg44" target="_blank" rel="noopener noreferrer" class="facebook-btn">
+                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span>Follow on Facebook</span>
+              </a>
+            </div>
+
+            <!-- Middle -->
+            <div>
+              <h4 class="col-heading">// 01_EXPLORE</h4>
+              <ul class="footer-nav-list">
+                <li><a href="/#view-champions" class="footer-nav-link">&gt; Champions</a></li>
+                <li><a href="/#view-champions" class="footer-nav-link">&gt; Items &amp; Equipment</a></li>
+              </ul>
+            </div>
+
+            <!-- Right -->
+            <div>
+              <h4 class="col-heading">// 02_ABOUT_LEGAL</h4>
+              <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+                <button type="button" class="legal-modal-trigger" onclick="openLegalModal('privacy')">[Privacy Policy]</button>
+                <button type="button" class="legal-modal-trigger" onclick="openLegalModal('terms')">[Terms of Service]</button>
+              </div>
+              <p class="footer-disclaimer">
+                Wild Rift Guides was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project. League of Legends and Riot Games are trademarks of Riot Games, Inc.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </article>
+
+
+    <!-- ====================================================================
+         CANVAS 04: FLOATING ELEVATED HORIZON
+         ==================================================================== -->
+    <article class="canvas-card" id="card-f4">
+      <div class="canvas-meta">
+        <div>
+          <span class="canvas-num">FORMAT 04</span>
+          <span class="canvas-name">Floating Elevated Horizon</span>
+          <span class="canvas-desc">&mdash; Ambient top-glow card with curved corners and floating card physics</span>
+        </div>
+        <button type="button" class="canvas-select-btn" onclick="selectFormat('04: Floating Elevated Horizon')">Select Format 04</button>
+      </div>
+
+      <div class="canvas-viewport">
+        <div class="viewport-dummy">
+          <span class="dummy-title">Wild Rift Stats &middot; Page Content Stream</span>
+          <span class="dummy-tag">Live Preview</span>
+        </div>
+
+        <div class="footer-f4-wrap">
+          <footer class="footer-f4">
+            <!-- Left -->
+            <div>
+              <div class="footer-title-row">
+                <img src="iconchrome.jpg" alt="Logo" class="footer-logo" />
+                <div>
+                  <div class="footer-title">Wild Rift Guides</div>
+                  <div class="footer-subtitle">Builds &middot; Items &middot; Runes</div>
+                </div>
+              </div>
+              <p class="footer-tagline">The Best Wild Rift Guides, made by the Best Wild Rift Players.</p>
+              <a href="https://www.facebook.com/m0ypsg44" target="_blank" rel="noopener noreferrer" class="facebook-btn">
+                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span>Follow on Facebook</span>
+              </a>
+            </div>
+
+            <!-- Middle -->
+            <div>
+              <h4 class="col-heading">Explore</h4>
+              <ul class="footer-nav-list">
+                <li><a href="/#view-champions" class="footer-nav-link">Champions</a></li>
+                <li><a href="/#view-champions" class="footer-nav-link">Items &amp; Equipment</a></li>
+              </ul>
+            </div>
+
+            <!-- Right -->
+            <div>
+              <h4 class="col-heading">About &amp; Legal</h4>
+              <div style="display: flex; gap: 16px; margin-bottom: 12px;">
+                <button type="button" class="legal-modal-trigger" onclick="openLegalModal('privacy')">Privacy Policy</button>
+                <button type="button" class="legal-modal-trigger" onclick="openLegalModal('terms')">Terms of Service</button>
+              </div>
+              <p class="footer-disclaimer">
+                Wild Rift Guides was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project. League of Legends and Riot Games are trademarks of Riot Games, Inc.
+              </p>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- ====================================================================
+         CANVAS 05: ESPORTS STUDIO SPLIT
+         ==================================================================== -->
+    <article class="canvas-card" id="card-f5">
+      <div class="canvas-meta">
+        <div>
+          <span class="canvas-num">FORMAT 05</span>
+          <span class="canvas-name">Esports Studio Split</span>
+          <span class="canvas-desc">&mdash; Broad asymmetric editorial pillar with framed Riot Games compliance card</span>
+        </div>
+        <button type="button" class="canvas-select-btn" onclick="selectFormat('05: Esports Studio Split')">Select Format 05</button>
+      </div>
+
+      <div class="canvas-viewport">
+        <div class="viewport-dummy">
+          <span class="dummy-title">Wild Rift Stats &middot; Page Content Stream</span>
+          <span class="dummy-tag">Live Preview</span>
+        </div>
+
+        <footer class="footer-f5">
+          <!-- Left: Big Brand Pillar -->
+          <div class="f5-brand-pillar">
+            <div class="footer-title-row">
+              <img src="iconchrome.jpg" alt="Logo" class="footer-logo" style="width: 48px; height: 48px;" />
+              <div>
+                <div class="footer-title" style="font-size: 20px;">Wild Rift Guides</div>
+                <div class="footer-subtitle" style="font-size: 11px;">Builds &middot; Items &middot; Runes</div>
+              </div>
+            </div>
+            <p class="footer-tagline" style="font-size: 14px; margin-top: 18px;">
+              The Best Wild Rift Guides, made by the Best Wild Rift Players.
+            </p>
+            <a href="https://www.facebook.com/m0ypsg44" target="_blank" rel="noopener noreferrer" class="facebook-btn">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Follow on Facebook</span>
+            </a>
+          </div>
+
+          <!-- Right: Grid with Explore & Compliance Card -->
+          <div class="f5-right-grid">
+            <div>
+              <h4 class="col-heading">Explore</h4>
+              <ul class="footer-nav-list">
+                <li><a href="/#view-champions" class="footer-nav-link">Champions</a></li>
+                <li><a href="/#view-champions" class="footer-nav-link">Items &amp; Equipment</a></li>
+              </ul>
+            </div>
+
+            <div class="f5-compliance-card">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h4 class="col-heading" style="margin-bottom: 0;">About &amp; Legal</h4>
+                <div style="display: flex; gap: 10px;">
+                  <button type="button" class="legal-modal-trigger" onclick="openLegalModal('privacy')">Privacy</button>
+                  <span style="color: var(--line)">&bull;</span>
+                  <button type="button" class="legal-modal-trigger" onclick="openLegalModal('terms')">Terms</button>
+                </div>
+              </div>
+              <p class="footer-disclaimer" style="margin-top: 0; font-size: 11.5px;">
+                Wild Rift Guides was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project. League of Legends and Riot Games are trademarks of Riot Games, Inc.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<!-- INTERACTIVE LEGAL MODAL -->
+<div class="legal-modal-backdrop" id="legal-modal" onclick="closeLegalModal(event)">
+  <div class="legal-modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h3 id="modal-title">Legal Document</h3>
+      <button type="button" class="modal-close" onclick="closeLegalModal()" aria-label="Close modal">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <!-- Injected -->
+    </div>
+  </div>
+</div>
+
+<!-- SELECTION TOAST -->
+<div class="toast-notice" id="toast">Selected format copied!</div>
+
+<script>
+// Filter / Tabs
+const tabs = document.querySelectorAll('.tab-btn');
+const cards = document.querySelectorAll('.canvas-card');
+
+tabs.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const target = btn.dataset.target;
+    if (target === 'all') {
+      cards.forEach(c => c.style.display = 'block');
+    } else {
+      cards.forEach(c => {
+        c.style.display = (c.id === `card-${target}`) ? 'block' : 'none';
+      });
+      const el = document.getElementById(`card-${target}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Modal Logic
+const modalBackdrop = document.getElementById('legal-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalBody = document.getElementById('modal-body');
+
+const legalContent = {
+  privacy: {
+    title: 'Privacy Policy',
+    html: `
+      <p>This policy explains how Wild Rift Guides collects and manages data when you browse our telemetry and champion build platform.</p>
+      <h4>1. Data Collection & Analytics</h4>
+      <p>We do not collect personally identifiable information. Standard web server access logs and anonymous performance telemetry are recorded to monitor server latency and cache hit ratios.</p>
+      <h4>2. Local Storage</h4>
+      <p>Your browser's <code>localStorage</code> may be used exclusively to persist UI preferences such as theme selection and search filters.</p>
+      <h4>3. Third-Party Links</h4>
+      <p>Our platform includes links to external third-party sites such as Riot Games and Facebook. We are not responsible for the privacy practices of external platforms.</p>
+    `
+  },
+  terms: {
+    title: 'Terms of Service',
+    html: `
+      <p>Welcome to Wild Rift Guides. By accessing our platform, you agree to comply with the following terms:</p>
+      <h4>1. Disclaimer of Affiliation</h4>
+      <p>Wild Rift Guides is an unofficial community analytics platform created under Riot Games' "Legal Jibber Jabber" policy. We are not affiliated with, endorsed, or sponsored by Riot Games or Tencent.</p>
+      <h4>2. Telemetry & Accuracy</h4>
+      <p>Ranked ladder statistics and champion build recommendations are computed from public match records and community meta analyses. Data is provided as-is without warranty of any kind.</p>
+      <h4>3. Intellectual Property</h4>
+      <p>League of Legends: Wild Rift and all related trademarks, logos, and champion imagery are property of Riot Games, Inc.</p>
+    `
+  }
+};
+
+function openLegalModal(type) {
+  const doc = legalContent[type];
+  if (!doc) return;
+  modalTitle.textContent = doc.title;
+  modalBody.innerHTML = doc.html;
+  modalBackdrop.classList.add('open');
+}
+
+function closeLegalModal(e) {
+  if (!e || e.target === modalBackdrop) {
+    modalBackdrop.classList.remove('open');
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLegalModal();
+});
+
+function selectFormat(name) {
+  const toast = document.getElementById('toast');
+  toast.textContent = `You selected: ${name}. Tell Antigravity to apply it!`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>
+
