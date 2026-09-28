@@ -126,7 +126,7 @@ const els = {
 const THEME_KEY = "wr-theme";
 
 function applyTheme(theme, persist) {
-  const next = theme === "light" ? "light" : "dark";
+  const next = theme === "dark" ? "dark" : "light";
   document.documentElement.setAttribute("data-theme", next);
   if (persist) {
     try {
@@ -140,31 +140,25 @@ function applyTheme(theme, persist) {
       "aria-label",
       next === "dark" ? "Switch to light theme" : "Switch to dark theme"
     );
+    els.themeToggle.setAttribute("aria-checked", next === "dark" ? "true" : "false");
   }
 }
 
 function initTheme() {
   if (!els.themeToggle) return;
-  applyTheme(document.documentElement.getAttribute("data-theme"), false);
+  let initial = "light";
+  try {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (stored === "dark") initial = "dark";
+    else if (stored === "light") initial = "light";
+  } catch (err) {}
+  applyTheme(initial, false);
 
   els.themeToggle.addEventListener("click", () => {
-    const next =
-      document.documentElement.getAttribute("data-theme") === "light"
-        ? "dark"
-        : "light";
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
     applyTheme(next, true);
   });
-
-  const mql = window.matchMedia("(prefers-color-scheme: light)");
-  const onChange = (event) => {
-    let stored = null;
-    try {
-      stored = localStorage.getItem(THEME_KEY);
-    } catch (err) {}
-    if (!stored) applyTheme(event.matches ? "light" : "dark", false);
-  };
-  if (mql.addEventListener) mql.addEventListener("change", onChange);
-  else if (mql.addListener) mql.addListener(onChange);
 }
 
 function syncIndicator(track) {

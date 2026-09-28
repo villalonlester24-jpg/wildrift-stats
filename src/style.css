@@ -99,6 +99,7 @@
   --rate-pick-bg: rgba(80, 166, 255, 0.14);
   --rate-ban: #ff4769;
   --rate-ban-bg: rgba(255, 71, 105, 0.14);
+  --gold: #f59e0b;
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-card: 0 16px 36px -16px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--line);
@@ -148,6 +149,7 @@
   --rate-pick-bg: rgba(30, 106, 204, 0.1);
   --rate-ban: #d62447;
   --rate-ban-bg: rgba(214, 36, 71, 0.1);
+  --gold: #d97706;
 
   --shadow-sm: 0 1px 3px rgba(10, 17, 32, 0.06);
   --shadow-card: 0 12px 30px -14px rgba(10, 17, 32, 0.14), 0 0 0 1px var(--line);
@@ -1312,6 +1314,38 @@ tr:nth-child(3) .rank {
   color: #616e8c;
 }
 
+[data-theme="light"] .tier-band[data-grade="splus"] .tier-label {
+  background: linear-gradient(135deg, #008f84, #0ac8b9);
+  color: #ffffff;
+}
+[data-theme="light"] .tier-band[data-grade="splus"] {
+  border-color: rgba(0, 143, 132, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 143, 132, 0.12);
+}
+
+[data-theme="light"] .tier-band[data-grade="s"] .tier-label {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #ffffff;
+}
+[data-theme="light"] .tier-band[data-grade="s"] {
+  border-color: rgba(217, 119, 6, 0.35);
+}
+
+[data-theme="light"] .tier-band[data-grade="a"] .tier-label {
+  background: linear-gradient(135deg, #64748b, #475569);
+  color: #ffffff;
+}
+
+[data-theme="light"] .tier-band[data-grade="b"] .tier-label {
+  background: #cbd5e1;
+  color: #1e293b;
+}
+
+[data-theme="light"] .tier-band[data-grade="c"] .tier-label {
+  background: #e2e8f0;
+  color: #334155;
+}
+
 .tier-grid {
   flex: 1;
   display: grid;
@@ -1759,7 +1793,7 @@ tr:nth-child(3) .rank {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-headline);
-  color: #fff;
+  color: var(--text-title);
 }
 
 .keystone-desc {
@@ -2206,11 +2240,24 @@ tr:nth-child(3) .rank {
   transform: translateY(0) scale(1);
 }
 
+[data-theme="light"] .scroll-top-btn {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: var(--line-strong);
+  color: var(--accent);
+  box-shadow: 0 10px 30px -5px rgba(10, 17, 32, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
 .scroll-top-btn:hover {
   border-color: var(--accent);
   background: var(--surface-hover);
   box-shadow: 0 14px 36px -6px rgba(0, 0, 0, 0.85), 0 0 22px rgba(10, 200, 185, 0.45);
   transform: translateY(-3px) scale(1.06);
+}
+
+[data-theme="light"] .scroll-top-btn:hover {
+  background: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 14px 36px -6px rgba(10, 17, 32, 0.22), 0 0 20px rgba(0, 143, 132, 0.35);
 }
 
 .scroll-top-btn:active {
@@ -2917,6 +2964,11 @@ tr:nth-child(3) .rank {
   z-index: 10;
 }
 
+[data-theme="light"] .site-footer {
+  background: radial-gradient(60rem 20rem at 50% 100%, rgba(0, 143, 132, 0.08), transparent 80%), #e2e8f2;
+  border-top: 2px solid var(--line);
+}
+
 .footer-inner {
   max-width: 1380px;
   margin: 0 auto;
@@ -2929,6 +2981,10 @@ tr:nth-child(3) .rank {
 .footer-brand-pillar {
   border-right: 1px solid rgba(28, 36, 56, 0.7);
   padding-right: 50px;
+}
+
+[data-theme="light"] .footer-brand-pillar {
+  border-right-color: var(--line);
 }
 
 .footer-title-row {
@@ -3080,6 +3136,12 @@ tr:nth-child(3) .rank {
   -webkit-backdrop-filter: blur(12px);
 }
 
+[data-theme="light"] .footer-compliance-card {
+  background: #ffffff;
+  border-color: var(--line);
+  box-shadow: 0 4px 20px rgba(10, 17, 32, 0.06);
+}
+
 .compliance-header {
   display: flex;
   align-items: center;
@@ -3141,6 +3203,10 @@ tr:nth-child(3) .rank {
   transition: opacity 0.25s ease;
 }
 
+[data-theme="light"] .legal-modal-backdrop {
+  background: rgba(10, 17, 32, 0.65);
+}
+
 .legal-modal-backdrop.open {
   opacity: 1;
   pointer-events: auto;
@@ -3157,6 +3223,12 @@ tr:nth-child(3) .rank {
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), 0 0 30px rgba(10, 200, 185, 0.2);
   transform: translateY(16px) scale(0.96);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .legal-modal-box {
+  background: #ffffff;
+  border-color: var(--line-strong);
+  box-shadow: 0 24px 64px rgba(10, 17, 32, 0.18), 0 0 30px rgba(0, 143, 132, 0.12);
 }
 
 .legal-modal-backdrop.open .legal-modal-box {

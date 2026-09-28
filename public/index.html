@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Wild Rift Stats &mdash; Champion Rankings &amp; Tier List</title>
   <meta name="description" content="English champion statistics and tier list for League of Legends: Wild Rift, ranked per role. Win, pick and ban rates, refreshed hourly." />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#07090e" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#edf1f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#07090e" media="(prefers-color-scheme: dark)" />
   <meta property="og:title" content="Wild Rift Stats — Champion Rankings &amp; Tier List" />
   <meta property="og:description" content="Per-role champion win, pick and ban rates for Wild Rift, refreshed hourly." />
   <meta property="og:type" content="website" />
@@ -15,11 +15,11 @@
     (function () {
       try {
         var stored = localStorage.getItem("wr-theme");
-        var theme = stored === "light" || stored === "dark"
-          ? stored
-          : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        var theme = stored === "dark" ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", theme);
-      } catch (e) { /* keep default */ }
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
     })();
   </script>
   <link rel="icon" type="image/jpeg" href="iconchrome.jpg" />
@@ -51,7 +51,7 @@
       </nav>
 
       <div class="topbar__meta">
-        <button type="button" id="theme-toggle" class="theme-switch" role="switch" aria-checked="true" aria-label="Toggle theme" title="Toggle theme">
+        <button type="button" id="theme-toggle" class="theme-switch" role="switch" aria-checked="false" aria-label="Switch to dark theme" title="Toggle theme">
           <span class="theme-switch__icon theme-switch__icon--sun" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="4.2"></circle>
@@ -269,7 +269,7 @@
       </div>
 
       <div class="board-meta-bar" style="margin-top: 16px; border-radius: var(--radius);">
-        <span id="champ-count-note">142 Champions &middot; Pro Builds &amp; Counters</span>
+        <span id="champ-count-note">141 Champions &middot; Pro Builds &amp; Counters</span>
         <span class="mono">Click any champion to inspect build</span>
       </div>
     </section>
