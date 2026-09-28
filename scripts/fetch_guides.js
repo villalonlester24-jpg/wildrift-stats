@@ -73,9 +73,43 @@ function parseGamePlan(body) {
   };
 }
 
+async function discoverBundles() {
+  try {
+    const homeRes = await fetch(BASE_URL + "/");
+    const homeHtml = await homeRes.text();
+    const indexMatch = homeHtml.match(/src="(\/assets\/js\/index-[^"]+\.js)"/);
+    if (!indexMatch) throw new Error("Could not find index.js in homepage");
+    const indexUrl = BASE_URL + indexMatch[1];
+    
+    const indexRes = await fetch(indexUrl);
+    const indexText = await indexRes.text();
+
+    const itemsFile = (indexText.match(/runtime-items-[a-zA-Z0-9_\-]+\.js/) || [])[0];
+    const runesFile = (indexText.match(/fallbackRunes-[a-zA-Z0-9_\-]+\.js/) || [])[0];
+    const guideFile = (indexText.match(/ChampionGuide-[a-zA-Z0-9_\-]+\.js/) || [])[0];
+
+    return {
+      itemsUrl: itemsFile ? `${BASE_URL}/assets/js/${itemsFile}` : "https://www.wildriftguides.com/assets/js/runtime-items-1ZqHiL_A.js",
+      runesUrl: runesFile ? `${BASE_URL}/assets/js/${runesFile}` : "https://www.wildriftguides.com/assets/js/fallbackRunes-jH274Caj.js",
+      guideUrl: guideFile ? `${BASE_URL}/assets/js/${guideFile}` : "https://www.wildriftguides.com/assets/js/ChampionGuide-rXv6n0Oy.js"
+    };
+  } catch (err) {
+    console.warn("Bundle auto-discovery fallback:", err.message);
+    return {
+      itemsUrl: "https://www.wildriftguides.com/assets/js/runtime-items-1ZqHiL_A.js",
+      runesUrl: "https://www.wildriftguides.com/assets/js/fallbackRunes-jH274Caj.js",
+      guideUrl: "https://www.wildriftguides.com/assets/js/ChampionGuide-rXv6n0Oy.js"
+    };
+  }
+}
+
 async function main() {
+  console.log("[0/4] Auto-discovering latest remote asset bundles...");
+  const bundles = await discoverBundles();
+  console.log(` -> Discovered: ${bundles.guideUrl.split('/').pop()}`);
+
   console.log("[1/4] Fetching items catalog...");
-  const itemsRes = await fetch("https://www.wildriftguides.com/assets/js/runtime-items-DbTprLkD.js");
+  const itemsRes = await fetch(bundles.itemsUrl);
   const itemsText = await itemsRes.text();
   const itemsMap = {};
   const itemJsonMatch = itemsText.match(/const\s+e\s*=\s*(\[[\s\S]*?\]);/);
@@ -99,7 +133,7 @@ async function main() {
   }
 
   console.log("[2/4] Fetching runes catalog...");
-  const runesRes = await fetch("https://www.wildriftguides.com/assets/js/fallbackRunes-BESoNa2_.js");
+  const runesRes = await fetch(bundles.runesUrl);
   const runesText = await runesRes.text();
   const runesMap = {};
   const runesMatches = [...runesText.matchAll(/id:\s*"([^"]+)",\s*name:\s*"([^"]+)",\s*description:\s*"([^"]+)",\s*category:\s*"([^"]+)"/g)];
@@ -116,7 +150,7 @@ async function main() {
   console.log(` -> Loaded ${Object.keys(runesMap).length} runes.`);
 
   console.log("[3/4] Fetching guide chunk registry...");
-  const guideBundleRes = await fetch("https://www.wildriftguides.com/assets/js/ChampionGuide-BcbPqfUC.js");
+  const guideBundleRes = await fetch(bundles.guideUrl);
   const guideBundleText = await guideBundleRes.text();
   const guideMatches = [...guideBundleText.matchAll(/"\.\.\/\.\.\/content\/guides\/([^\/]+)\/([^\.]+)\.md":\(\)=>t\(\(\)=>import\("(\.\/[^"]+)"\)/g)];
   console.log(` -> Found ${guideMatches.length} total guide chunks.`);
